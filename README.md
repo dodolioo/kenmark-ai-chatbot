@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 Kenmark AI Chatbot — Full Stack AI Assistant
 
-## Getting Started
+An AI-powered chatbot built for **Kenmark ITan Solutions** that answers user queries using structured company knowledge, Excel-based FAQs, and website content.  
+The system demonstrates real-world AI integration, scalable backend design, and a modern UI.
 
-First, run the development server:
+---
+
+## 🌐 Live Demo
+
+**Deployed Application:**  
+<YOUR_VERCEL_URL>
+
+**GitHub Repository:**  
+<YOUR_GITHUB_REPO_URL>
+
+---
+
+## 📌 Project Overview
+
+This project implements a production-style AI chatbot that:
+
+- Understands user queries
+- Retrieves information from:
+  - Company knowledge files
+  - Excel-based FAQs
+  - Scraped website content
+- Generates accurate and contextual AI responses using a local LLM
+- Provides a clean, responsive chat interface
+- Includes an Admin Panel for knowledge updates
+
+---
+
+## ⚙️ Tech Stack
+
+| Layer | Technology |
+|------|-----------|
+Frontend | Next.js 16 (App Router), Tailwind CSS |
+Backend | Next.js API Routes |
+AI Engine | Ollama (Mistral) |
+Knowledge Parsing | ExcelJS, File System |
+Language | TypeScript |
+UI | Responsive Chat Widget + Admin Panel |
+
+---
+
+## 🧩 Features
+
+### Core
+- Floating AI Chat Widget
+- Session-based conversation memory
+- Knowledge retrieval from multiple sources
+- Non-hallucinatory AI responses
+- Admin panel for Excel knowledge uploads
+
+### Bonus
+- Typing indicator
+- Dark UI
+- Website content ingestion
+- Modular & scalable architecture
+
+---
+
+## 🧪 Example Knowledge Format (Excel)
+
+| Category | Question | Answer |
+|--------|---------|-------|
+| About | What is Kenmark ITan Solutions? | Kenmark ITan Solutions is a technology company... |
+| Services | What services are offered? | Consulting, AI solutions, training, etc. |
+| Contact | How can I contact the company? | Visit kenmarkitan.com |
+
+---
+
+## 🚀 Setup & Run Instructions
+
+### 1. Install Dependencies
 
 ```bash
+npm install
+
+### 2. Install Ollama & Pull Model
+
+Download Ollama from: https://ollama.ai
+
+ollama pull mistral
+
+
+Start Ollama:
+
+ollama run mistral
+
+### 3. Environment Variables
+
+Create .env file:
+
+OLLAMA_URL=http://127.0.0.1:11434
+
+### 4. Start Application
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🛠 Admin Panel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Access:
 
-## Learn More
+/admin
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Upload Excel files containing structured company knowledge.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+### 🧠 AI Model Details
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Model: Mistral
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Runtime: Ollama (Local LLM)
+
+Approach: RAG (Retrieval Augmented Generation)

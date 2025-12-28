@@ -1,0 +1,11 @@
+Category: About
+Q: What is Kenmark ITan Solutions?
+A: Kenmark ITan Solutions is a technology company focused on delivering AI-driven digital solutions and consulting services.
+
+Category: Services
+Q: What services are offered?
+A: Consulting, AI solutions, automation, training, analytics, and digital transformation.
+
+Category: Contact
+Q: How can I contact the company?
+A: Visit the contact page on kenmarkitan.com
