@@ -21,13 +21,10 @@ export async function POST(req: Request) {
     history.push({ role: "user", content: message })
     if (history.length > 10) history.shift()
 
-    const filePath =
-      "C:\\Users\\KRISH\\Downloads\\kenmark-chatbot\\public\\knowledge\\company.txt"
-
-    console.log("USING FILE:", filePath)
+    const filePath = "public/knowledge/company.txt"
 
     if (!fs.existsSync(filePath)) {
-      throw new Error("File truly does not exist: " + filePath)
+      throw new Error("Company knowledge file missing.")
     }
 
     const knowledge = fs.readFileSync(filePath, "utf8")
@@ -36,41 +33,45 @@ export async function POST(req: Request) {
       .map((m) => `${m.role.toUpperCase()}: ${m.content}`)
       .join("\n")
 
-      const prompt = `
-      You are an AI assistant for Kenmark ITan Solutions.
-      
-      You must answer ONLY using the information provided in the Company Knowledge.
-      If the answer is not present in the knowledge, respond exactly:
-      "I don't have that information yet."
-      
-      Do NOT use any external knowledge.
-      Do NOT guess.
-      Do NOT hallucinate.
-      
-      Company Knowledge:
-      ${knowledge}
-      
-      Conversation History:
-      ${conversation}
-      
-      User Question:
-      ${message}
-      
-      Answer the user.
-      `
+    const prompt = `
+You are an AI assistant for Kenmark ITan Solutions.
 
-    const response = await fetch("http://127.0.0.1:11434/api/generate", {
+You must answer ONLY using the information provided in the Company Knowledge.
+If the answer is not present in the knowledge, respond exactly:
+"I don't have that information yet."
+
+Do NOT use any external knowledge.
+Do NOT guess.
+Do NOT hallucinate.
+
+Company Knowledge:
+${knowledge}
+
+Conversation History:
+${conversation}
+
+User Question:
+${message}
+
+Answer the user.
+`
+
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "mistral", prompt, stream: false })
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        "HTTP-Referer": "https://kenmark-ai-chatbot.vercel.app",
+        "X-Title": "Kenmark AI Chatbot"
+      },
+      body: JSON.stringify({
+        model: "mistralai/mistral-7b-instruct",
+        messages: [{ role: "system", content: prompt }]
+      })
     })
 
-    let reply = "Sorry, I couldn't generate a response."
-
-    try {
-      const data = await response.json()
-      reply = data.response || reply
-    } catch {}
+    const data = await response.json()
+    let reply = data?.choices?.[0]?.message?.content || "No response generated."
 
     history.push({ role: "assistant", content: reply })
     if (history.length > 10) history.shift()
