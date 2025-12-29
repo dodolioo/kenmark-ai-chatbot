@@ -3,15 +3,6 @@
 An AI-powered chatbot built for **Kenmark ITan Solutions** that answers user queries using structured company knowledge, Excel-based FAQs, and website content.  
 The system demonstrates real-world AI integration, scalable backend design, and a modern UI.
 
----
-
-## 🌐 Live Demo
-
-**Deployed Application:**  
-<YOUR_VERCEL_URL>
-
-**GitHub Repository:**  
-<YOUR_GITHUB_REPO_URL>
 
 ---
 
@@ -112,6 +103,6 @@ Upload Excel files containing structured company knowledge.
 
 Model: Mistral
 
-Runtime: Ollama (Local LLM)
+Runtime: openrouter API
 
 Approach: RAG (Retrieval Augmented Generation)
