@@ -68,24 +68,13 @@ UI | Responsive Chat Widget + Admin Panel |
 ```bash
 npm install
 
-### 2. Install Ollama & Pull Model
-
-Download Ollama from: https://ollama.ai
-
-ollama pull mistral
-
-
-Start Ollama:
-
-ollama run mistral
-
-### 3. Environment Variables
+### 2. Environment Variables
 
 Create .env file:
 
 OLLAMA_URL=http://127.0.0.1:11434
 
-### 4. Start Application
+### 3. Start Application
 npm run dev
 
 
