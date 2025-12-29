@@ -63,9 +63,9 @@ UI | Responsive Chat Widget + Admin Panel |
 
 ## 🚀 Setup & Run Instructions
 
-### 1. Install Dependencies
 
 ```bash
+### 1. Install Dependencies
 npm install
 
 ### 2. Environment Variables
